@@ -1,0 +1,69 @@
+<mat-card class="example-card" *ngIf="!Mfastatus">
+        <mat-card-header>
+          <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form class="example-form">
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+                </mat-form-field></td>
+                
+            </tr>
+          </table>
+          </form>
+          <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> -->
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button (click)="login()" color="primary">Login</button>
+        </mat-card-actions>
+      </mat-card>
+     
+
+      <mat-card class="example-card" *ngIf="Mfastatus">
+        <mat-card-header>
+          <mat-card-title>Google 2 Factor Authentication</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form class="example-form" [formGroup]="MFAForm">
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                    <p>Scan the below QR code or enter the entry code Manually in your Google Authenticator App.</p>
+                </td>              
+              </tr>
+              <tr>
+                <td>
+                    <img src="{{ MfaData.BarcodeImageUrl }}" alt="QR Code Scanner" height="200px" width="200px" />
+                </td>              
+              </tr>
+              <tr>
+                <td>
+                    Manual Entry code: {{MfaData.SetupCode}}
+                </td>              
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Passcode" name="passcode" formControlName="passcode" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              </table>
+          </form>
+          <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> -->
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button (click)="MFAAuthenticator()" color="primary">Submit</button>
+        </mat-card-actions>
+      </mat-card>
+     
